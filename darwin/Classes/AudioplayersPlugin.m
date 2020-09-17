@@ -738,6 +738,7 @@ recordingActive: (bool) recordingActive
   NSMutableDictionary *playerInfo = players[playerId];
   [playerInfo setObject:(playingRoute) forKey:@"playingRoute"];
 
+#if TARGET_OS_IPHONE
   BOOL success = false;
   NSError *error = nil;
   if ([playingRoute isEqualToString:@"earpiece"]) {
@@ -749,6 +750,9 @@ recordingActive: (bool) recordingActive
   if (!success) {
     NSLog(@"Error setting playing route: %@", error);
   }
+#endif
+
+  // TODO macos
 } 
 
 -(void) stop: (NSString *) playerId {
